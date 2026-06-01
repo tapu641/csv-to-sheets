@@ -28,7 +28,7 @@ creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
 gc = gspread.authorize(creds)
 ```
 * `scope` はプログラムに与える権限の範囲（スプレッドシートとDriveへのアクセス）
-* `credentials.json` を読み込んでGoogleに「信頼できるプログラムです」と証明する
+* `credentials.json` を読み込んでGoogleに認証させる
 
 ### ② スプレッドシートを開く
 ```python
@@ -54,6 +54,21 @@ worksheet.update("A1:C11", data)
 * A1〜C11の範囲にCSVのデータを一括で書き込む
 
 ---
+
+## 実行方法
+
+```
+docker-compose build
+```
+* Dockerfileを元にPython環境を構築
+* requirements.txtのライブラリをインストール
+
+```
+docker-compose run app
+```
+* コンテナを起動
+* main.pyが実行される
+* スプレッドシートにCSVの内容が書き込まれる
 
 ## 参考
 * [gspreadの使い方 - Qiita](https://qiita.com/plumfield56/articles/dab6230512f3381fdcad)
